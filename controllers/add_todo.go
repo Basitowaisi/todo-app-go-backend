@@ -13,6 +13,7 @@ func AddTodo(c *gin.Context) {
 	var item models.Todo
 	if err := c.BindJSON(&item); err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, err)
+		return
 	}
 
 	if err := models.ValidateDuplicateInput(&item); err != nil {
